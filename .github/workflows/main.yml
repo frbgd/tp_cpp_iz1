@@ -19,6 +19,9 @@ jobs:
 
       - name: install git
         run: sudo apt install git
+        
+      - name: install cppcheck
+        run: sudo apt install cppcheck
 
       - name: install lcov
         run: sudo apt install lcov
