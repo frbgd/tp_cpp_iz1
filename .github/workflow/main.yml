@@ -14,20 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: install compilers
-        run: sudo apt install build-essential
-
-      - name: install git
-        run: sudo apt install git
-
-      - name: install cppcheck
-        run: sudo apt install cppcheck
-
-      - name: install lcov
-        run: sudo apt install lcov
-
-      - name: install valgrind
-        run: sudo apt install valgrind
+      - name: install requirements
+        run: sudo apt-get install build-essential libgtest-dev git cppcheck lcov valgrind
+        
+      - name: install gtest
+        run: cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp *.a /usr/lib && mkdir -p /usr/local/lib/gtest/ && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/gtest/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/gtest/libgtest_main.a
 
       - name: cppcheck
         run: cppcheck src/*
