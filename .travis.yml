@@ -28,8 +28,7 @@ jobs:
       script:
         - cppcheck --inconclusive --enable=all --language=c ../src/*.c ../src/*.h
         - cppcheck --inconclusive --enable=all --language=c++ ../src/*.cpp
-        - python2.7 ../cpplint/cpplint.py --extensions=c ../src/*.c ../src/*.h
-        - python2.7 ../cpplint/cpplint.py --extensions=cpp ../src/*.cpp
+        - python2.7 ../cpplint/cpplint.py --extensions=cpp,h ../src/*
 
     - stage: coverage
       name: "Test coverage"
