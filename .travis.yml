@@ -37,10 +37,13 @@ jobs:
         - cd CMakeFiles/tests.dir/src
         - gcov tests.cpp.gcno
         - lcov --capture --directory . --output-file test.info
-        - genhtml test.info --output-directory ../../../coverage-report
+        - genhtml test.info --output-directory ../../../../coverage-report
         - cd ../../../
 
     - stage: memcheck
       name: "Static analysis"
       script:
         - valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./tests
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
