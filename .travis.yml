@@ -1,0 +1,43 @@
+language: cpp
+dist: bionic
+sudo: true
+compiler: gcc
+
+addons:
+  apt:
+    packages:
+      - cmake
+      - valgrind
+      - lcov
+      - cppcheck
+
+before_script:
+  - cmake -B build .
+  - make -C build
+
+jobs:
+  include:
+    - stage: tests
+      name: "Run tests"
+      script:
+        - ./build/tests
+
+    - stage: cppcheck
+      name: "Check code"
+      script:
+        - cppcheck --inconclusive --enable=all --language=c src/*.c src/*.h
+        - cppcheck --inconclusive --enable=all --language=c++ src/*.cpp
+
+    - stage: coverage
+      name: "Test coverage"
+      script:
+        - cd build/CMakeFiles/tests.dir/src
+        - gcov tests.cpp.gcno
+        - lcov --capture --directory . --output-file test.info
+        - genhtml test.info --output-directory ../../../../coverage-report
+        - cd ../../../../
+
+    - stage: memcheck
+      name: "Static analysis"
+      script:
+        - valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./build/tests
