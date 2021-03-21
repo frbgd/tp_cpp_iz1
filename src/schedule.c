@@ -7,27 +7,27 @@ short convert_to_minutes(unsigned short hours, unsigned short minutes){
     return (short)(hours * 60 + minutes);
 }
 
-struct train_schedule *findByStationName(train_schedule *trainSchedule, char *destinationName){
+struct train_schedule *find_by_station_name(train_schedule *tr_schedule, char *destination_name){
     unsigned short i = 0;
-    for(; i < trainSchedule->stopCount; i++){
-        if(strcmp(destinationName, trainSchedule->stops[i].stationName) == 0) {
-            return trainSchedule;
+    for(; i < tr_schedule->stopCount; i++){
+        if(strcmp(destination_name, tr_schedule->stops[i].station_name) == 0) {
+            return tr_schedule;
         }
     }
     return 0;
 }
 
-train_schedule *findSchedule(unsigned short hours, unsigned short minutes, char *destinationName){
+train_schedule *find_schedule(unsigned short hours, unsigned short minutes, char *destination_name){
     short current_time = convert_to_minutes(hours, minutes);
     if(current_time < 0)
         return 0;
 
     unsigned short i = 0;
-    for(; i < schedule->trainCount; i++){
+    for(; i < schedule->train_count; i++){
         if(current_time < schedule->trains[i].stops[0].departure){
-            return findByStationName(&schedule->trains[i], destinationName);
+            return find_by_station_name(&schedule->trains[i], destination_name);
         }
     }
 
-    return findByStationName(&schedule->trains[0], destinationName);
+    return find_by_station_name(&schedule->trains[0], destination_name);
 }

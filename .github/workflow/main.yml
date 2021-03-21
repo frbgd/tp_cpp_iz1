@@ -21,7 +21,7 @@ jobs:
         run: cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp *.a /usr/lib && mkdir -p /usr/local/lib/gtest/ && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/gtest/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/gtest/libgtest_main.a
 
       - name: cppcheck
-        run: cppcheck src/*
+        run: cppcheck --inconclusive --enable=all --language=c src/*.c src/*.h && cppcheck --inconclusive --enable=all --language=c++ src/*.cpp
 
       - name: build
         run: mkdir build && cmake -B build . && make -C build

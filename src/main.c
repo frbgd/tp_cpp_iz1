@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "schedule.h"
 #include "test_data.h"
 
@@ -5,16 +6,16 @@ int main(){
     prepare_test_data();
 
     unsigned short hours, minutes = 0;
-    char destinationStation[30] = "";
+    char destination_station[30] = "";
     printf("enter current time and destination station in format HH:MM STATION_NAME:\n");
-    scanf("%hu:%hu %s", &hours, &minutes, destinationStation);
+    scanf("%hu:%hu %29s", &hours, &minutes, destination_station);
 
-    train_schedule *targetTrain = findSchedule(hours, minutes, destinationStation);
-    if (targetTrain != 0){
-        printf("You need train number %u at %02u:%02u\n",
-               targetTrain->number,
-               targetTrain->stops[0].departure / 60,
-               targetTrain->stops[0].departure % 60);
+    train_schedule *target_train = find_schedule(hours, minutes, destination_station);
+    if (target_train != 0){
+        printf("You need train number %u at %02d:%02d\n",
+               target_train->number,
+               target_train->stops[0].departure / 60,
+               target_train->stops[0].departure % 60);
     } else {
         printf("NOT FOUND");
     }
