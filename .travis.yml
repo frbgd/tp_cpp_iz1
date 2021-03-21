@@ -12,32 +12,33 @@ addons:
       - cppcheck
 
 before_script:
-  - cmake -B build .
-  - make -C build
+  - mkdir build && cd build
+  - cmake ..
+  - make
 
 jobs:
   include:
     - stage: tests
       name: "Run tests"
       script:
-        - ./build/tests
+        - ./tests
 
     - stage: cppcheck
-      name: "Check code"
+      name: "Static analisys"
       script:
-        - cppcheck --inconclusive --enable=all --language=c src/*.c src/*.h
-        - cppcheck --inconclusive --enable=all --language=c++ src/*.cpp
+        - cppcheck --inconclusive --enable=all --language=c ../src/*.c ../src/*.h
+        - cppcheck --inconclusive --enable=all --language=c++ ../src/*.cpp
 
     - stage: coverage
       name: "Test coverage"
       script:
-        - cd build/CMakeFiles/tests.dir/src
+        - cd CMakeFiles/tests.dir/src
         - gcov tests.cpp.gcno
         - lcov --capture --directory . --output-file test.info
-        - genhtml test.info --output-directory ../../../../coverage-report
-        - cd ../../../../
+        - genhtml test.info --output-directory ../../../coverage-report
+        - cd ../../../
 
     - stage: memcheck
       name: "Static analysis"
       script:
-        - valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./build/tests
+        - valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./tests
