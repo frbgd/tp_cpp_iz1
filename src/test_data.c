@@ -4,7 +4,7 @@
 #include "schedule.h"
 #include "test_data.h"
 
-void prepare_test_data(){
+void prepare_test_data() {
     train_stop init_stops[10] = {
             {303, 303, "Balashikha"},
             {310, 311, "pl. Gorenki"},
@@ -21,12 +21,12 @@ void prepare_test_data(){
     schedule->train_count = 22;
     schedule->trains = (train_schedule *) malloc(schedule->train_count * sizeof(train_schedule));
 
-    for(int i = 0; i < 22; i++){
+    for (int i = 0; i < 22; i++) {
         train_schedule train_schedule = {
                 (unsigned short)(i + 1), 10, (train_stop*)malloc(10 * sizeof(train_stop))
         };
 
-        for(int j = 0; j < 10; j++){
+        for (int j = 0; j < 10; j++) {
             train_stop stop = {
                     (unsigned short)(init_stops[j].arrival + i * 50),
                     (unsigned short)(init_stops[j].departure + i * 50)
@@ -41,7 +41,7 @@ void prepare_test_data(){
 }
 
 // чисто для ручного просмотра
-//void print_all(){
+// void print_all(){
 //    for(int i = 0; i < 22; i++){
 //        for(int j =0; j < 10; j++){
 //            printf("%u: %02d:%02d - %02d:%02d - %s\n",
@@ -53,4 +53,4 @@ void prepare_test_data(){
 //                   schedule->trains[i].stops[j].station_name);
 //        }
 //    }
-//}
+// }

@@ -2,7 +2,7 @@
 #include "schedule.h"
 #include "test_data.h"
 
-int main(){
+int main() {
     prepare_test_data();
 
     unsigned short hours, minutes = 0;
@@ -11,7 +11,7 @@ int main(){
     scanf("%hu:%hu %29s", &hours, &minutes, destination_station);
 
     train_schedule *target_train = find_schedule(hours, minutes, destination_station);
-    if (target_train != 0){
+    if (target_train != 0) {
         printf("You need train number %u at %02d:%02d\n",
                target_train->number,
                target_train->stops[0].departure / 60,

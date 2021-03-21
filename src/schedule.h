@@ -1,3 +1,6 @@
+#ifndef SRC_SCHEDULE_H_
+#define SRC_SCHEDULE_H_
+
 struct train_stop{
     unsigned short arrival;
     unsigned short departure;
@@ -21,3 +24,5 @@ typedef struct general_schedule general_schedule;
 general_schedule *schedule;
 
 train_schedule *find_schedule(unsigned short hours, unsigned short minutes, char *destination_name);
+
+#endif  // SRC_SCHEDULE_H_
