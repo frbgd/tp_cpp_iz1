@@ -30,7 +30,7 @@ jobs:
       script:
         - cppcheck --inconclusive --enable=all --language=c ../src/*.c ../src/*.h
         - cppcheck --inconclusive --enable=all --language=c++ ../src/*.cpp
-        - cpplint --headers=h --linelength=110 --filter=-runtime/int,-legal/copyright,-build/include_subdir,-build/include --extensions=cpp,h ./src/*
+        - cpplint --headers=h --linelength=110 --filter=-runtime/int,-legal/copyright,-build/include_subdir,-build/include --extensions=cpp,h ../src/*
 
     - stage: memcheck
       name: "Memory checking"
