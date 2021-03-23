@@ -7,7 +7,7 @@ short convert_to_minutes(unsigned short hours, unsigned short minutes) {
     return (short)(hours * MINUTES_IN_HOUR + minutes);
 }
 
-struct train_schedule *find_by_station_name(train_schedule *tr_schedule, char *destination_name) {
+train_schedule *find_by_station_name(train_schedule *tr_schedule, char *destination_name) {
     if (tr_schedule == NULL)
         return NULL;
 

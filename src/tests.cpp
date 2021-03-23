@@ -44,6 +44,12 @@ TEST(schedule, NullptrSchedule) {
     ASSERT_EQ(t, nullptr);
 }
 
+TEST(train_schedule, NullptrTrainSchedule) {
+    train_schedule *input = nullptr;
+    train_schedule *output = find_by_station_name(input, const_cast<char*>("Some Name"));
+    ASSERT_EQ(output, nullptr);
+}
+
 int main(int argc, char** argv) {
     prepare_test_data();
 

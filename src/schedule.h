@@ -28,5 +28,6 @@ typedef struct general_schedule general_schedule;
 general_schedule *schedule;
 
 train_schedule *find_schedule(unsigned short hours, unsigned short minutes, char *destination_name);
+train_schedule *find_by_station_name(train_schedule *tr_schedule, char *destination_name);
 
 #endif  // SRC_SCHEDULE_H_
