@@ -2,8 +2,6 @@
 #include "schedule.h"
 #include "test_data.h"
 
-const int MINUTES_IN_HOUR = 60;
-
 int main() {
     prepare_test_data();
 

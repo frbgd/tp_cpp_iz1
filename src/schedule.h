@@ -1,7 +1,9 @@
 #ifndef SRC_SCHEDULE_H_
 #define SRC_SCHEDULE_H_
 
-const int STATION_NAME_LENGTH = 30;
+#define STATION_NAME_LENGTH 30
+#define HOURS_IN_DAY 24
+#define MINUTES_IN_HOUR 60
 
 struct train_stop{
     unsigned short arrival;

@@ -2,9 +2,9 @@
 #include "schedule.h"
 
 short convert_to_minutes(unsigned short hours, unsigned short minutes) {
-    if (hours > 23 || minutes > 59)
+    if (hours >= HOURS_IN_DAY || minutes >= MINUTES_IN_HOUR)
         return -1;
-    return (short)(hours * 60 + minutes);
+    return (short)(hours * MINUTES_IN_HOUR + minutes);
 }
 
 struct train_schedule *find_by_station_name(train_schedule *tr_schedule, char *destination_name) {
