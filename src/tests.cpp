@@ -5,40 +5,40 @@ extern "C" {
 #include "schedule.h"
 }
 
-TEST(schedule, schedule_first) {
+TEST(schedule, CorrectTime) {
     train_schedule *t = find_schedule(12, 30, const_cast<char*>("Reutovo"));
     ASSERT_NE(t, nullptr);
     ASSERT_EQ(t->number, 10);
 }
 
-TEST(schedule, schedule_second) {
+TEST(schedule, MidnigthTime) {
     train_schedule *t = find_schedule(0, 0, const_cast<char*>("Moscow"));
     ASSERT_NE(t, nullptr);
     ASSERT_EQ(t->number, 1);
 }
 
-TEST(schedule, schedule_third) {
+TEST(schedule, PreMidnigthTime) {
     train_schedule *t = find_schedule(23, 59, const_cast<char*>("pl. Gorenki"));
     ASSERT_NE(t, nullptr);
     ASSERT_EQ(t->number, 1);
 }
 
-TEST(schedule, schedule_fourth) {
+TEST(schedule, InCorrectStopName) {
     train_schedule *t = find_schedule(0, 0, const_cast<char*>("Moskwa"));
     ASSERT_EQ(t, nullptr);
 }
 
-TEST(schedule, schedule_fifth) {
+TEST(schedule, IncorrectHours) {
     train_schedule *t = find_schedule(50, 0, const_cast<char*>("Moscow"));
     ASSERT_EQ(t, nullptr);
 }
 
-TEST(schedule, schedule_sixth) {
+TEST(schedule, IncorrectMinutes) {
     train_schedule *t = find_schedule(0, 100, const_cast<char*>("Moscow"));
     ASSERT_EQ(t, nullptr);
 }
 
-TEST(schedule, schedule_seventh) {
+TEST(schedule, NullptrSchedule) {
     schedule = nullptr;
     train_schedule *t = find_schedule(0, 0, const_cast<char*>("Moscow"));
     ASSERT_EQ(t, nullptr);
