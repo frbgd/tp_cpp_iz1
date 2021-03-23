@@ -5,7 +5,7 @@
 int main() {
     prepare_test_data();
 
-    unsigned short hours, minutes = 0;
+    unsigned short hours = 0, minutes = 0;
     char destination_station[STATION_NAME_LENGTH] = "";
     printf("enter current time and destination station in format HH:MM STATION_NAME:\n");
     scanf("%hu:%hu %29s", &hours, &minutes, destination_station);
