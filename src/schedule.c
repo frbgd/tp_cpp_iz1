@@ -30,8 +30,9 @@ train_schedule *find_schedule(unsigned short hours, unsigned short minutes, char
 
     unsigned short i = 0;
     for (; i < schedule->train_count; i++) {
-        if (current_time < schedule->trains[i].stops[0].departure) {
-            return find_by_station_name(&schedule->trains[i], destination_name);
+        train_schedule *tr_schedule = &schedule->trains[i];
+        if (tr_schedule != NULL && current_time < tr_schedule->stops[0].departure) {
+            return find_by_station_name(tr_schedule, destination_name);
         }
     }
 
