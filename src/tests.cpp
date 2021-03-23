@@ -5,10 +5,28 @@ extern "C" {
 #include "schedule.h"
 }
 
-TEST(schedule, CorrectTime) {
+TEST(schedule, FirstCorrectTime) {
     train_schedule *t = find_schedule(12, 30, const_cast<char*>("Reutovo"));
     ASSERT_NE(t, nullptr);
     ASSERT_EQ(t->number, 10);
+}
+
+TEST(schedule, SecondCorrectTime) {
+    train_schedule *t = find_schedule(5, 30, const_cast<char*>("Kuskovo"));
+    ASSERT_NE(t, nullptr);
+    ASSERT_EQ(t->number, 2);
+}
+
+TEST(schedule, ThirdCorrectTime) {
+    train_schedule *t = find_schedule(15, 2, const_cast<char*>("Nizhegorodskaya"));
+    ASSERT_NE(t, nullptr);
+    ASSERT_EQ(t->number, 13);
+}
+
+TEST(schedule, FourthCorrectTime) {
+    train_schedule *t = find_schedule(22, 11, const_cast<char*>("Stroika"));
+    ASSERT_NE(t, nullptr);
+    ASSERT_EQ(t->number, 22);
 }
 
 TEST(schedule, MidnigthTime) {
