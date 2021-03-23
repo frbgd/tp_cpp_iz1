@@ -39,18 +39,3 @@ void prepare_test_data() {
         schedule->trains[i] = train_schedule;
     }
 }
-
-// чисто для ручного просмотра
-// void print_all(){
-//    for(int i = 0; i < 22; i++){
-//        for(int j =0; j < 10; j++){
-//            printf("%u: %02d:%02d - %02d:%02d - %s\n",
-//                   schedule->trains[i].number,
-//                   schedule->trains[i].stops[j].arrival / 60,
-//                   schedule->trains[i].stops[j].arrival % 60,
-//                   schedule->trains[i].stops[j].departure / 60,
-//                   schedule->trains[i].stops[j].departure % 60,
-//                   schedule->trains[i].stops[j].station_name);
-//        }
-//    }
-// }
