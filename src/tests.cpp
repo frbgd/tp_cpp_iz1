@@ -38,6 +38,12 @@ TEST(schedule, schedule_sixth) {
     ASSERT_EQ(t, nullptr);
 }
 
+TEST(schedule, schedule_seventh) {
+    schedule = nullptr;
+    train_schedule *t = find_schedule(0, 0, const_cast<char*>("Moscow"));
+    ASSERT_EQ(t, nullptr);
+}
+
 int main(int argc, char** argv) {
     prepare_test_data();
 
