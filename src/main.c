@@ -13,7 +13,7 @@ int main() {
     scanf("%hu:%hu %29s", &hours, &minutes, destination_station);
 
     train_schedule *target_train = find_schedule(hours, minutes, destination_station);
-    if (target_train != 0) {
+    if (target_train != NULL) {
         printf("You need train number %u at %02d:%02d\n",
                target_train->number,
                target_train->stops[0].departure / MINUTES_IN_HOUR,
