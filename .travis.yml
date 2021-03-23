@@ -1,0 +1,41 @@
+language: cpp
+dist: bionic
+sudo: true
+compiler: gcc
+
+addons:
+  apt:
+    packages:
+      - cmake
+      - valgrind
+      - cppcheck
+      - python3
+      - python3-pip
+
+before_script:
+  - pip3 install cpplint
+  - mkdir build && cd build
+  - cmake ..
+  - make
+
+jobs:
+  include:
+    - stage: tests
+      name: "Run tests"
+      script:
+        - ./tests
+
+    - stage: static_analisys
+      name: "Static analisys"
+      script:
+        - cppcheck --inconclusive --enable=all --language=c ../src/*.c ../src/*.h
+        - cppcheck --inconclusive --enable=all --language=c++ ../src/*.cpp
+        - cpplint --headers=h --linelength=110 --filter=-runtime/int,-legal/copyright,-build/include_subdir,-build/include --extensions=cpp,h ../src/*
+
+    - stage: memcheck
+      name: "Memory checking"
+      script:
+        - valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./tests
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
