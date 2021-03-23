@@ -2,6 +2,8 @@
 #include "schedule.h"
 #include "test_data.h"
 
+const int MINUTES_IN_HOUR = 60;
+
 int main() {
     prepare_test_data();
 
@@ -14,8 +16,8 @@ int main() {
     if (target_train != 0) {
         printf("You need train number %u at %02d:%02d\n",
                target_train->number,
-               target_train->stops[0].departure / 60,
-               target_train->stops[0].departure % 60);
+               target_train->stops[0].departure / MINUTES_IN_HOUR,
+               target_train->stops[0].departure % MINUTES_IN_HOUR);
     } else {
         printf("NOT FOUND");
     }
