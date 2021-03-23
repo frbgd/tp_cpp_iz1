@@ -18,6 +18,9 @@ void prepare_test_data() {
             {346, 346, "Moscow"}
     };
     schedule = (general_schedule *)(malloc(sizeof(general_schedule)));
+    if (schedule == NULL)
+        return;
+
     schedule->train_count = 22;
     schedule->trains = (train_schedule *) malloc(schedule->train_count * sizeof(train_schedule));
 

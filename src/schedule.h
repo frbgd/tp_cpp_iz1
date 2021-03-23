@@ -1,10 +1,12 @@
 #ifndef SRC_SCHEDULE_H_
 #define SRC_SCHEDULE_H_
 
+const int STATION_NAME_LENGTH = 30;
+
 struct train_stop{
     unsigned short arrival;
     unsigned short departure;
-    char station_name[30];
+    char station_name[STATION_NAME_LENGTH];
 };
 struct train_schedule{
     unsigned short number;

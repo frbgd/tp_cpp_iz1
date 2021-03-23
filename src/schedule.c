@@ -21,6 +21,9 @@ struct train_schedule *find_by_station_name(train_schedule *tr_schedule, char *d
 }
 
 train_schedule *find_schedule(unsigned short hours, unsigned short minutes, char *destination_name) {
+    if (schedule == NULL)
+        return NULL;
+
     short current_time = convert_to_minutes(hours, minutes);
     if (current_time < 0)
         return NULL;
