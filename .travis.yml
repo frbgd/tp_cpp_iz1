@@ -10,8 +10,11 @@ addons:
       - valgrind
       - lcov
       - cppcheck
+      - python3
+      - python3-pip
 
 before_script:
+  - pip3 install cpplint
   - mkdir build && cd build
   - cmake ..
   - make
@@ -28,7 +31,7 @@ jobs:
       script:
         - cppcheck --inconclusive --enable=all --language=c ../src/*.c ../src/*.h
         - cppcheck --inconclusive --enable=all --language=c++ ../src/*.cpp
-        - python2.7 ../cpplint/cpplint.py --extensions=cpp,h ../src/*
+        - cpplint --headers=h --linelength=110 --filter=-runtime/int,-legal/copyright,-build/include_subdir,-build/include --extensions=cpp,h ./src/*
 
     - stage: coverage
       name: "Test coverage"
